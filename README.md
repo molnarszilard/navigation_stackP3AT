@@ -1,24 +1,32 @@
 # navigation-stackP3AT
 Pioneer 3-AT
+
 install rosaria in a catkin:
+
 http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA
+
 installing Aria: sudo apt install aria2 libaria-dev
+
 https://github.com/amor-ros-pkg/rosaria
 
 check USB connection (star should be a number (initially 0))
-ls -l /dev/ttyUSB*
+
+>ls -l /dev/ttyUSB*
 
 add permissions
-sudo chmod 777 /dev/ttyUSB*
 
-catkin_make && source devel/setup.bash
+>sudo chmod 777 /dev/ttyUSB*
+
+>catkin_make && source devel/setup.bash
 
 connecting to robot:
-rosrun rosaria RosAria (cable might be unstable) (port is 0 default, if USB was not 0, then: ‘rosrun rosaria RosAria _port:=/dev/ttyUSB1’)
+>rosrun rosaria RosAria 
+
+(cable might be unstable) (port is 0 default, if USB was not 0, then: ‘rosrun rosaria RosAria _port:=/dev/ttyUSB1’)
 (there is a slight chance, that you can only connect to the robot if you push it, so that the wheels are turning)
 
 keyboard control:
-rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/RosAria/cmd_vel
+>rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/RosAria/cmd_vel
 
 ________________________
 Lidar LMS200
@@ -44,39 +52,39 @@ https://github.com/ros-perception/slam_gmapping
 returns errors at catkin_make?
 
 instal with apt:
-sudo apt install ros-melodic-gmapping
-sudo apt install ros-melodic-slam-gmapping
-sudo apt install ros-melodic-openslam-gmapping
-sudo apt install ros-melodic-map-server
+>sudo apt install ros-melodic-gmapping
+>sudo apt install ros-melodic-slam-gmapping
+>sudo apt install ros-melodic-openslam-gmapping
+>sudo apt install ros-melodic-map-server
 
-How to create map
+**How to create map**
 Session 1 (simplifications in session 4)
-Terminal1: roscore
-T2: rosrun sicktoolbox_wrapper sicklms _port:=/dev/ttyUSB0 _baud:=38400 _connect_delay:=30
-T3: rosrun rosaria RosAria _port:=/dev/ttyUSB1
-T4: rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/RosAria/cmd_vel
+Terminal1: >roscore
+T2: >rosrun sicktoolbox_wrapper sicklms _port:=/dev/ttyUSB0 _baud:=38400 _connect_delay:=30
+T3: >rosrun rosaria RosAria _port:=/dev/ttyUSB1
+T4: >rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/RosAria/cmd_vel
 (maybe needed before T5: rosparam set use_sim_time true)
-T5: rosrun tf2_ros static_transform_publisher 0.16 0 0.16 0 0 0 1 base_link laser
-T6: rosrun gmapping slam_gmapping scan:=/scan  _odom_frame:=odom
-T7: rosbag record /map
+T5: >rosrun tf2_ros static_transform_publisher 0.16 0 0.16 0 0 0 1 base_link laser
+T6: >rosrun gmapping slam_gmapping scan:=/scan  _odom_frame:=odom
+T7: >rosbag record /map
 
 navigate around with the robot (teleop), then stop them
 now the bag contains the map, to get it as image and yaml:
 
-Session2
-T1: roscore
-T2: rosrun map_server map_saver (rerun this at the end of the bag)
-T3: rosbag play abc.bag
+**Session2**
+T1: >roscore
+T2: >rosrun map_server map_saver (rerun this at the end of the bag)
+T3: >rosbag play abc.bag
 at the end of the bag the command in T2 again
 
-Session 3
+**Session 3**
 amcl localization
 run session 1, with T1-T5, then:
-T6: rosrun map_server map_server map.yaml
-T7: rosrun amcl amcl scan:=/scan map:=/map use_map_topic:=true
+T6: >rosrun map_server map_server map.yaml
+T7: >rosrun amcl amcl scan:=/scan map:=/map use_map_topic:=true
 then in rviz you can see an approximation of the robot pose on the map (as you move the robot, the pose should change -- althought it is very insensitive, pose changes only after larger movements)
 
-Session4 - Final Navigation stack
+**Session4 - Final Navigation stack**
 http://wiki.ros.org/navigation
 http://wiki.ros.org/navigation/Tutorials/RobotSetup
 
@@ -165,10 +173,10 @@ local_costmap:
  resolution: 0.05
 
 
-run!:
-T1: roslaunch pioneer_nav pioneer_nav_configuration.launch
-T2: roslaunch pioneer_nav move_base.launch
-T3: rviz
+**run!:**
+T1: >roslaunch pioneer_nav pioneer_nav_configuration.launch
+T2: >roslaunch pioneer_nav move_base.launch
+T3: >rviz
 in Rviz add map, footprint, plan
 
 Set goal:
@@ -207,7 +215,7 @@ if __name__ == '__main__':
        pass
 
 
-ROS REMOTE
+**ROS REMOTE**
 
 Host device (both IP is the ip of host device, this is where roscore runs. These two has to be set in each terminal):
 export ROS_MASTER_URI=http://192.168.1.1:11311
