@@ -11,7 +11,9 @@ https://github.com/amor-ros-pkg/rosaria
 
 check USB connection (star should be a number (initially 0))
 
->ls -l /dev/ttyUSB*
+'''bash
+ls -l /dev/ttyUSB*
+'''
 
 add permissions
 
