@@ -1,0 +1,4 @@
+*.bag
+*.zip
+devel/*
+build/*

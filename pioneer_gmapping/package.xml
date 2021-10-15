@@ -1,0 +1,27 @@
+<package>
+  <name>pioneer_gmapping</name>
+  <version>1.0.0</version>
+  <description>
+    This package provides ROS configuration and launch file stubs for
+    controlling P3-DX mobile robots with a Logitech F710 gamepad and
+    building occupancy grid maps using the slam_gmapping package. They
+    are a part of the hands-on assignment for the "Programming for the
+    Robot Operating System course at FER Zagreb.
+  </description>
+  <maintainer email="damjan.miklic@fer.hr">Damjan Miklić</maintainer>
+  <url type="website">http://www.fer.unizg.hr/en/course/pftros</url>
+  <author>Damjan Miklić</author>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend></build_depend>
+  <run_depend>joy</run_depend>
+  <run_depend>teleop_twist_joy</run_depend>
+  <run_depend>lms1xx</run_depend>
+  <run_depend>slam_gmapping</run_depend>
+  <export></export>
+
+</package>
+
+
