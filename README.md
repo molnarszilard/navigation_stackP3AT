@@ -11,7 +11,7 @@ https://github.com/amor-ros-pkg/rosaria
 
 check USB connection (star should be a number (initially 0))
 
-'''bash
+'''shell
 ls -l /dev/ttyUSB*
 '''
 
