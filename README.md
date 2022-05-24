@@ -218,10 +218,17 @@ if __name__ == '__main__':
 **ROS REMOTE**
 
 Host device (both IP is the ip of host device, this is where roscore runs. These two has to be set in each terminal):
-export ROS_MASTER_URI=http://192.168.1.1:11311
-export ROS_IP=192.168.1.1   
+
+```export ROS_MASTER_URI=http://192.168.1.1:11311```
+
+```export ROS_IP=192.168.1.1```
+
 rosccommand
+
 Slave device (first IP is the ip of host device, second IP is the IP of the slave device, this is where roscore runs. These two has to be set in each terminal):
-export ROS_MASTER_URI=http://192.168.1.1:11311
-export ROS_IP=192.168.1.2   
+
+```export ROS_MASTER_URI=http://192.168.1.1:11311```
+
+```export ROS_IP=192.168.1.2```
+
 rosccommand
